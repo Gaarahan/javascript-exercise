@@ -1,6 +1,20 @@
+async function resolveResponse(response) {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error(response.json());
+}
+
 async function fetchData(url) {
   // <-- start
-  // TODO 24: 通过await/async实现异步请求
+  try {
+    const response = await fetch(url);
+    const json = await resolveResponse(response);
+
+    document.writeln(json.name);
+  } catch (error) {
+    console.error(error);
+  }
   // end -->
 }
 

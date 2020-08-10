@@ -1,6 +1,13 @@
 function fetchData(url) {
   // <-- start
-  // TODO 23: 通过Fetch API实现异步请求
+  return fetch(url).then(response => {
+    return new Promise((resolve, reject) => {
+      if (response.ok) {
+        resolve(response.json());
+      }
+      reject(response.json());
+    });
+  });
   // end -->
 }
 
